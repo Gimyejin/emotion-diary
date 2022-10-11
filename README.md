@@ -272,7 +272,7 @@ body {
           type={'positive'} />
       ```
       <br />
-        3. MyButton.js
+      3. MyButton.js
   
       ```javascript
           const MyButton = ({ text, type, onClick }) => {
