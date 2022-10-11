@@ -240,8 +240,8 @@ body {
       위의 코드의 ``process.env.PUBLIC_URL``은 public 디렉토리를 가리키는 명령어다.<br/>
 #### 5-4. 공동 컴포넌트 세팅
 - 모든 페이지에 공통으로 사용되는 버튼, 헤더 컴포넌트 세팅
-  1. 공통부분 - 버튼
-      1. App.css
+  1. 공통부분 - 버튼 <br />
+      a. App.css
 
       ```css
         /* MyButton */
@@ -260,32 +260,55 @@ body {
           white-space: nowrap;
           font-family: "Nanum Pen Script", cursive;
         }
+        
+        .MyButton_default {
+          background-color: #acacac;
+          color: black;
+        }
+
+        .MyButton_positive {
+          background-color: #64c964;
+          color: white;
+        }
+
+        .MyButton_negative {
+          background-color: #fd565f;
+          color: white;
+        }
       ```
       
       <br />
       
-      2. App.js
+      b. App.js
 
       ```javascript 
-          <MyButton text={'버튼'} 
+          <MyButton text={'D 버튼'} 
+          onClick={() => { alert('버튼 클릭') }} />
+          <MyButton text={'P 버튼'} 
           onClick={() => { alert('버튼 클릭') }} 
           type={'positive'} />
+          <MyButton text={'N 버튼'} 
+          onClick={() => { alert('버튼 클릭') }} 
+          type={'negative'} />
       ```
       <br />
-      3. MyButton.js
-  
-      ```javascript
-          const MyButton = ({ text, type, onClick }) => {
-              return (
-                  <button className={["MyButton", `MyButton_${type}`].join(" ")}
-                      onClick={onClick}>{text}</button>
-              )
-          }
+        c. MyButton.js
 
-          MyButton.defaultProps = {
-              type: "dafault",
-          }
-          export default MyButton;
-      ```
-    
+        ```javascript
+            const MyButton = ({ text, type, onClick }) => {
+                return (
+                    <button className={["MyButton", `MyButton_${type}`].join(" ")}
+                        onClick={onClick}>{text}</button>
+                )
+            }
+
+            MyButton.defaultProps = {
+                type: "dafault",
+            }
+            export default MyButton;
+        ```
+      위의 코드를 보면 `` <button className={["MyButton", `MyButton_${type}`].join(" ")} onClick={onClick}>{text}</button> `` 라는 코드가 있다.
+      해당 코드는 className에 MyButton MyButton_(type)형식으로 값을 넣기 위함이다.(className은 문자밖에 들어갈 수 없기 때문이고, className이 여러개로 표시될 시 개발자 툴로 확인하면 띄어쓰기로 구분되어있음)<br />
+      ![ex_screenshot](./img/img5.png)
+      기본적으로 버튼들은 MyButton이라는 className을 갖으며 또 각각의 타입에 맞춰 MyButton_(type)을 갖게 되기에, css에서 해당 className별로 css효과를 넣을 수 있다.
 
