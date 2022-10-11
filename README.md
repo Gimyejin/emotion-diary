@@ -1,9 +1,13 @@
+# 감성 일기장 만들기
+동영상 강의를 보며 감성 일기장 프로젝트를 구현 및 필기
+- react-router-dim version : 6.4.2
+- react version : 18.2.0
+
 ## 1.react router
 ```
 $ npm install react-router-dom@6
 ```
 react router 공식문서 주소 : https://reactrouter.com/
-
 <br />
 
 ## 2.Routes
@@ -408,15 +412,18 @@ body {
           font-family: "Nanum Pen Script";
         }
      ```
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
+  #### 5-5. 상태 관리 세팅
+    ![ex_screenshot](./img/img8.png) <br />
+
+
+  #### 5-6. 프로젝트 State Context 세팅
+
+
+  #### 5-7. 프로젝트 Dispatch Context 세팅
+
+
+
     
     
     
