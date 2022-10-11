@@ -1,6 +1,6 @@
 # 감성 일기장 만들기
 동영상 강의를 보며 감성 일기장 프로젝트를 구현 및 필기
-- react-router-dim version : 6.4.2
+- react-router-dom version : 6.4.2
 - react version : 18.2.0
 
 ## 1.react router
@@ -415,12 +415,132 @@ body {
         
   #### 5-5. 상태 관리 세팅
     ![ex_screenshot](./img/img8.png) <br />
+    1. reducer <br />
+    ```javascript
+    /* App.js */
+    const reducer = (state, action) => { return state }
+    function App() {
+    const [data, dispatch] = useReducer(reducer, []);
+    ```
+    <br />
+    먼저 reducer를 사용하기 위한 틀을 작성한다
+    
+    2. redcer 채우기 <br />
+    ```javascript
+    const reducer = (state, action) => {
+      let newState = [];
+      switch (action.type) {
+        case 'INIT': {
+          return action.data
+        }
+        case 'CREATE': {
+          newState = [action.data, ...state];
+          break;
+        }
+        case 'REMOVE': {
+          newState = state.filter((it) => it.id !== action.targetId);
+          break;
+        }
+        case 'EDIT': {
+          newState = state.map((it) =>
+            it.id === action.data.id ? { ...action.data } : it)
+          break;
+        }
+        default:
+          return state;
+      }
+      return newState;
+    }
+    ```
+   
+   3. dispatch함수 만들기
+   ```javascript
+    function App() {
 
+      const [data, dispatch] = useReducer(reducer, []);
+      const dataId = useRef(0);
+      
+      //creat
+      const onCreate = (date, content, emotion) => {
+        dispatch({
+          type: "CREATE",
+          data: {
+            id: dataId.current,
+            date: new Date(date).getTime(),
+            content,
+            emotion,
+          },
+        });
+        dataId.current++;
+      }
+      //remove
+      const onRemove = (tagerId) => {
+        dispatch({
+          type: "REMOVE",
+          tagerId
+        })
+      }
+      //edit
+      const onEdit = (targetId, date, content, emotion) => {
+        dispatch({
+          type: "EDIT",
+          data: {
+            id: targetId,
+            date: new Date(date).getTime(),
+            content,
+            emotion
+          }
+        })
+      }
 
-  #### 5-6. 프로젝트 State Context 세팅
+   ```
 
+  #### 5-6. React.createContext() 세팅
+  1. data state를 컴포넌트 트리 전역에 공급하기 <br />
+  ```javascript
+  export const DiaryStateContext = React.createContext();
+  return (
+    <DiaryStateContext.Provider value={data}>
+    ...
+    </ DiaryStateContext.Provider>
+  ```
+  ![ex_screenshot](./img/img9.png) <br />
+  <br />
+  ``Context.Provider``가 context tree 전역으로 감싸고 있음 <br />
+  - 일기 데이터를 관리하는 dat state를 value로 공급했음을 알 수 있음.
+  <br/>
 
-  #### 5-7. 프로젝트 Dispatch Context 세팅
+  2. onCreate, onRemove ,onEdit 역시 context를 생성하여 공급하기
+  ```javascript
+  export const DiaryDispatchContext = React.createContext();\
+  ...
+  return (
+    <DiaryStateContext.Provider value={data}>
+      <DiaryDispatchContext.Provider
+        value={{
+          onCreate, onRemove, onEdit,
+        }}>
+        <BrowserRouter>
+          <div className='App'>
+            <h2>App.js</h2>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/new' element={<New />} />
+              <Route path='/edit' element={<Edit />} />
+              <Route path='/diary/:id' element={<Diary />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </DiaryDispatchContext.Provider>
+    </DiaryStateContext.Provider >
+  );
+  ```
+  <br />
+  
+  ![ex_screenshot](./img/img10.png) <br />
+  <br />
+  - 이번에도 전역에 함수들을 공급했음을 알 수 있음
+  
 
 
 
