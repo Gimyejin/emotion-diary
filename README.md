@@ -146,13 +146,14 @@ export default Edit;
 
 사용예시 : 로그인이 안된 사용자가 로그인이 필요한 페이지로 접근하여 강제적으로 로그인 페이지로 이동시킬때
 <br />
-
+<br />
 ## 5. 기초 공사 항목
 #### 5-1. 폰트 세팅
-- Goole Web Fonts를 이용한 프로젝트에 사용되는 폰트 세팅
+- Google Web Fonts를 이용한 프로젝트에 사용되는 폰트 세팅
 
 ![ex_screenshot](./img/img2.png) 
 ```css
+/* App.css */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
 
 .App {
@@ -165,11 +166,12 @@ export default Edit;
 
 *font-family 는 가장 마지막에 온 속성을 따른다
 
-
+<br />
 #### 5-2. 레이아웃 세팅
 - 모든 페이지에 반영되는 레이아웃 세팅
 
 ```css
+/* App.css */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
 
 body {
@@ -228,7 +230,7 @@ body {
     ㄴ ex) 브라우저 높이값이 900px일때 1vh => 9px<br/>
          브라우저 너비값이 750px일때 1vw => 7.5px
 </details>
-
+<br />
 
 #### 5-3. 이미지 에셋 세팅
 - 감정 이미지들을 프로젝트에서 불러와 사용할 수 있는 환경 세팅<br/>
@@ -237,7 +239,8 @@ body {
   2.  ``` javascript
       <img src={process.env.PUBLIC_URL + '/assets/emotion1.png'} />
       ```
-      위의 코드의 ``process.env.PUBLIC_URL``은 public 디렉토리를 가리키는 명령어다.<br/>
+      위의 코드의 ``process.env.PUBLIC_URL``은 public 디렉토리를 가리키는 명령어다.
+      <br/>
 #### 5-4. 공동 컴포넌트 세팅
 - 모든 페이지에 공통으로 사용되는 버튼, 헤더 컴포넌트 세팅
   1. 공통부분 - 버튼 <br />
