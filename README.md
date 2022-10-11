@@ -233,7 +233,7 @@ body {
 #### 5-3. 이미지 에셋 세팅
 - 감정 이미지들을 프로젝트에서 불러와 사용할 수 있는 환경 세팅<br/>
   1.  public하위에 이미지 넣기
-      ![ex_screenshot](./img/img3.png) <br/>
+      ![ex_screenshot](./img/img4.png) <br/>
   2.  ``` javascript
       <img src={process.env.PUBLIC_URL + '/assets/emotion1.png'} />
       ```
