@@ -231,7 +231,61 @@ body {
 
 
 #### 5-3. 이미지 에셋 세팅
-- 감정 이미지들을 프로젝트에서 불러와 사용할 수 있는 환경 세팅
+- 감정 이미지들을 프로젝트에서 불러와 사용할 수 있는 환경 세팅<br/>
+  1.  public하위에 이미지 넣기
+      ![ex_screenshot](./img/img3.png) <br/>
+  2.  ``` javascript
+      <img src={process.env.PUBLIC_URL + '/assets/emotion1.png'} />
+      ```
+      위의 코드의 ``process.env.PUBLIC_URL``은 public 디렉토리를 가리키는 명령어다.<br/>
 #### 5-4. 공동 컴포넌트 세팅
 - 모든 페이지에 공통으로 사용되는 버튼, 헤더 컴포넌트 세팅
+  1. 공통부분 - 버튼
+      1. App.css
+
+      ```css
+        /* MyButton */
+        .MyButton {
+          cursor: pointer;
+          border: none;
+          border-radius: 5px;
+
+          padding-top: 10px;
+          padding-bottom: 10px;
+          padding-right: 20px;
+          padding-left: 20px;
+
+          font-size: 18px;
+
+          white-space: nowrap;
+          font-family: "Nanum Pen Script", cursive;
+        }
+      ```
+      
+      <br />
+      
+      2. App.js
+
+      ```javascript 
+          <MyButton text={'버튼'} 
+          onClick={() => { alert('버튼 클릭') }} 
+          type={'positive'} />
+      ```
+      <br />
+       3. MyButton.js
+  
+      ```javascript
+          const MyButton = ({ text, type, onClick }) => {
+              return (
+                  <button className={["MyButton", `MyButton_${type}`].join(" ")}
+                      onClick={onClick}>{text}</button>
+              )
+          }
+
+          MyButton.defaultProps = {
+              type: "dafault",
+          }
+          export default MyButton;
+      ```
+    
 
