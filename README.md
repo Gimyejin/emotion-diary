@@ -4,6 +4,7 @@ $ npm install react-router-dom@6
 ```
 react router 공식문서 주소 : https://reactrouter.com/
 
+<br />
 
 ### 2.Routes
 ```javascript
@@ -39,6 +40,7 @@ export default App;
 <Route path='/edit' element={<Edit />} />
 <Route path='/diary' element={<Diary />} />
 ```
+<br />
 
 ### 3.페이지 이동 (Link)
 이전 html에서는 a태그를 이용하여 이동하였지만 그 방식은 MPA(Multiple Page Application)방식 페이지가 이동할 때 마다 새로고침이 발생한다.
@@ -64,7 +66,10 @@ export default RouteTest;
 ```
 -> 실제로 페이지가 이동되는것보다는 페이지 역할을 하는 컴포넌트와 url를 바꿔끼는 방식이라고 생각하자.
 
-Link 문서 : https://reactrouter.com/en/main/components/link
+Link 문서 : https://reactrouter.com/en/main/components/link   
+
+
+
 
 ### 4. React Router Dom의 유용한 기능
 #### 4-1. Path Variable
