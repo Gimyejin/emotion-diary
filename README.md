@@ -134,7 +134,8 @@ const Edit = () => {
             <h1>Edit</h1>
             <p>이곳은 일기 수정페이지 입니다</p>
             <button onClick={() => { navigate("/home") }}>Home으로 가기</button>
-            <button onClick={() => { navigate(-1) }}>뒤로가기</button> //-1인자를 넣으면 뒤로가기가 될 수 있다.
+            <button onClick={() => { navigate(-1) }}>뒤로가기</button> 
+                {/* -1인자를 넣으면 뒤로가기가 될 수 있다. */>
         </div>
     );
 };
@@ -144,13 +145,91 @@ export default Edit;
 
 
 사용예시 : 로그인이 안된 사용자가 로그인이 필요한 페이지로 접근하여 강제적으로 로그인 페이지로 이동시킬때
-
+<br />
 
 ## 5. 기초 공사 항목
 #### 5-1. 폰트 세팅
 - Goole Web Fonts를 이용한 프로젝트에 사용되는 폰트 세팅
+
+![ex_screenshot](./img/img2.png) 
+```css
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
+
+.App {
+  padding: 20px;
+  font-family: "Nanum Pen Script", cursive;
+  font-family: "Yeon Sung", cursive;
+}
+```
+위의 코드를 @import부터 복사하여 css파일에 import 및 사용 
+
+*font-family 는 가장 마지막에 온 속성을 따른다
+
+
 #### 5-2. 레이아웃 세팅
-- 모든 페이지에 반영되는 레이아웃 세팅 
+- 모든 페이지에 반영되는 레이아웃 세팅
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
+
+body {
+  background-color: #d6d6d6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nanum Pen Script", cursive;
+  min-height: 100vh;
+  margin: 0px;
+}
+
+@media (min-width :650px) {
+  .App {
+    width: 640px;
+  }
+}
+
+@media (max-width :650px) {
+  .App {
+    width: 90vw;
+  }
+}
+
+#root {
+  background-color: white;
+  box-shadow: rgba(61, 56, 75, 0.7) 0px 7px 29px 0px
+}
+
+.App {
+
+  min-height: 100vh;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+```
+
+![ex_screenshot](./img/img3.png) 
+
+위의 css코드의 결과물이다.
+
+<details>
+<summary>css 필기</summary>
+
+- media 쿼리<br/>
+    ㄴ Css에서 어떤 스타일을 선택적으로 적용하고 싶을 때 사용<br/>
+    ㄴ @mdia(조건){ 스타일 }
+  
+- justify-content : 메인축 방향으로 아이템을 정렬하는 속성<br/>
+    ㄴ center 시 아이템들이 가운데로 정렬된다.<br/>
+    참고 문서 : https://studiomeal.com/archives/197
+  
+  
+- vh  & vw (vertical height & vertical width)<br/>
+    ㄴ 뷰포트의 너비값과 높이값에 맞춰 사용가능 <br/>
+    ㄴ ex) 브라우저 높이값이 900px일때 1vh => 9px<br/>
+         브라우저 너비값이 750px일때 1vw => 7.5px
+</details>
+
+
 #### 5-3. 이미지 에셋 세팅
 - 감정 이미지들을 프로젝트에서 불러와 사용할 수 있는 환경 세팅
 #### 5-4. 공동 컴포넌트 세팅
