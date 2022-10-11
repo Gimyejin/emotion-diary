@@ -7,6 +7,7 @@ import Diary from './pages/Diary';
 
 //Components
 import MyButton from './components/MyButton';
+import MyHeader from './components/MyHeader';
 
 
 function App() {
@@ -17,7 +18,10 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <h2>App.js</h2>
-
+        <MyHeader headText={"App"}
+          leftChild={<MyButton text={"왼쪽버튼"} onClick={() => { alert("왼쪽 클릭") }} />}
+          rightChild={<MyButton text={"오른쪽버튼"} onClick={() => { alert("오른쪽 클릭") }} />}
+        />
         <MyButton text={'P 버튼'}
           onClick={() => { alert('버튼 클릭') }}
           type={'positive'} />
