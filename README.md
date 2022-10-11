@@ -319,3 +319,22 @@ body {
       
       기본적으로 버튼들은 ``MyButton``이라는 ``className``을 가지며 또 각각의 타입에 맞춰 ``MyButton_(type)``을 갖게 되기에, css에서 해당 className별로 css효과를 넣을 수 있다.
 
+      **지금은 positive, negative, default type으로 나눠 css를 설정하였지만, 만약 그 외의 type이 들어왔을 시에는 css적인 문제도 생긴다.
+      그것을 해결하기 위해 아래와 같은 코드를 추가 및 수정해준다.**
+      ```javascript
+        const MyButton = ({ text, type, onClick }) => {
+            //type유형이 기재된 것 외가 들어오면 default로 강제한다
+            const btnType = ['positive', 'negative'].includes(type) ? type : 'default';
+            return (
+                <button className={["MyButton", `MyButton_${btnType}`].join(" ")}
+                    onClick={onClick}>{text}</button>
+            )
+        }
+
+        MyButton.defaultProps = {
+            type: "dafault",
+        }
+        export default MyButton;
+      ```
+      <br/>
+      ![ex_screenshot](./img/img6.png) <br />
