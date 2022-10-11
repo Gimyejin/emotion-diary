@@ -339,3 +339,84 @@ body {
       <br/>
       
       ![ex_screenshot](./img/img6.png) <br />
+  2. 공통부분 - 헤더 <br />
+      ![ex_screenshot](./img/img7.png) <br />
+    ```javascript
+      /* MyHeader.js*/
+      const MyHeader = ({ headText, leftChild, rightChild }) => {
+          return <header>
+              <div className="head_btn_left">
+                  {leftChild}
+              </div>
+              <div className="head_text">
+                  {headText}
+              </div>
+              <div className="head_btn_rigth">
+                  {rightChild}
+              </div>
+          </header>
+      }
+      export default MyHeader;
+     ```
+     <br/>
+     
+     ```javascript
+     /* App.js */
+      <h2>App.js</h2>
+      <MyHeader headText={"App"}
+        leftChild={<MyButton text={"왼쪽버튼"} onClick={() => { alert("왼쪽 클릭") }} />}
+        rightChild={<MyButton text={"오른쪽버튼"} onClick={() => { alert("오른쪽 클릭") }} />}
+      />
+      ...
+     ```
+     <br />
+     
+     ```css
+        /* App.css - Header */
+        header {
+          padding-top: 20px;
+          padding-bottom: 20px;
+
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid #e2e2e2;
+        }
+
+        header>div {
+          display: flex;
+        }
+
+        header .head_text {
+          width: 50%;
+          font-size: 25px;
+          justify-content: center;
+        }
+
+        header .head_btn_left {
+          width: 25%;
+          justify-content: start;
+          /* start를 하면 맨 앞에 붙음 */
+        }
+
+        header .head_btn_rigth {
+          width: 25%;
+          justify-content: end;
+          /* end하면 맨 뒤에 붙음 */
+        }
+
+        header button {
+          font-family: "Nanum Pen Script";
+        }
+     ```
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
