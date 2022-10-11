@@ -231,6 +231,7 @@ body {
          브라우저 너비값이 750px일때 1vw => 7.5px
 </details>
 <br />
+
 #### 5-3. 이미지 에셋 세팅
 - 감정 이미지들을 프로젝트에서 불러와 사용할 수 있는 환경 세팅<br/>
   1.  public하위에 이미지 넣기
@@ -309,8 +310,12 @@ body {
             }
             export default MyButton;
         ```
-      위의 코드를 보면 `` <button className={["MyButton", `MyButton_${type}`].join(" ")} onClick={onClick}>{text}</button> `` 라는 코드가 있다.
-      해당 코드는 className에 MyButton MyButton_(type)형식으로 값을 넣기 위함이다.(className은 문자밖에 들어갈 수 없기 때문이고, className이 여러개로 표시될 시 개발자 툴로 확인하면 띄어쓰기로 구분되어있음)<br />
-      ![ex_screenshot](./img/img5.png)
-      기본적으로 버튼들은 MyButton이라는 className을 갖으며 또 각각의 타입에 맞춰 MyButton_(type)을 갖게 되기에, css에서 해당 className별로 css효과를 넣을 수 있다.
+      위의 코드를 보면 `` <button className={["MyButton", `MyButton_${type}`].join(" ")} onClick={onClick}>{text}</button> `` 라는 코드가 있다. <br />
+      해당 코드는 className에 MyButton MyButton_(type)형식으로 값을 넣기 위함이다.<br />
+      
+      (className은 문자밖에 들어갈 수 없기 때문이고, className이 여러개로 표시될 시 개발자 툴로 확인하면 띄어쓰기로 구분되어있음)<br /><br />
+      
+      ![ex_screenshot](./img/img5.png) <br />
+      
+      기본적으로 버튼들은 ``MyButton``이라는 ``className``을 가지며 또 각각의 타입에 맞춰 ``MyButton_(type)``을 갖게 되기에, css에서 해당 className별로 css효과를 넣을 수 있다.
 
