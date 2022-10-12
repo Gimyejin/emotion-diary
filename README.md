@@ -543,7 +543,8 @@ body {
   
 
 
-
+### Home화면 구현하기
+링크 : https://shiny-ray-067.notion.site/emotion-diary-HOME-37bd6f6bc73e4b92a86514ccd13d733c
     
     
     
