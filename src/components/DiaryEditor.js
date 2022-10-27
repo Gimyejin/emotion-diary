@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { DiaryDispatchContext } from "./../App.js"
 
 import MyHeader from "./MyHeader";
@@ -40,12 +40,12 @@ const emotionList = [
 
 
 
-const DiaryEditor = ({ thisDiary }) => {
+const DiaryEditor = ({ isEdit, originData }) => {
     const contentRef = useRef();
-    const [content, setContent] = useState(thisDiary.content);
+    const [content, setContent] = useState("");
     const [emotion, setEmotion] = useState(3);
     const [date, setDate] = useState(getStringDate(new Date()));
-    const { onCreate } = useContext(DiaryDispatchContext);
+    const { onCreate, onEdit } = useContext(DiaryDispatchContext);
     const navigate = useNavigate();
 
     const handleClickEmote = (emotion) => {
@@ -57,13 +57,28 @@ const DiaryEditor = ({ thisDiary }) => {
             contentRef.current.focus();
             return;
         }
-        onCreate(date, content, emotion);
+        if (window.confirm(isEdit ? "일기를 수정하시겠습니까?" : "새로운 일기를 작성하시겠습니까")) {
+            if (isEdit) {
+                onEdit(originData.id, date, content, emotion);
+            } else {
+                onCreate(date, content, emotion);
+            }
+        }
         navigate("/", { replace: true });
     }
 
+    useEffect(() => {
+        if (isEdit) {
+            setDate(getStringDate(new Date(parseInt(originData.date))));
+            setContent(originData.content);
+            setEmotion(originData.emotion);
+        }
+    }, [isEdit, originData]);
+
     return (
         <div className="DiaryEditor">
-            <MyHeader headText={"새 일기쓰기"} leftChild={<MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />} />
+            <MyHeader headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
+                leftChild={<MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />} />
             <div>
                 <section>
                     <h4>오늘은 언제인가요?</h4>
@@ -106,8 +121,5 @@ const DiaryEditor = ({ thisDiary }) => {
             </div >
         </div >
     );
-}
-DiaryEditor.default = {
-    thisDiary: ''
 }
 export default DiaryEditor;
