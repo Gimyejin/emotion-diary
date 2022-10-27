@@ -45,25 +45,31 @@ function App() {
     {
       id: 1,
       emotion: 1,
-      content: "오늘의 일기",
+      content: "오늘의 일기 길이를 늘러보았다",
       date: 1665549579097
     },
     {
       id: 2,
-      emotion: 5,
+      emotion: 2,
       content: "오늘의 일기 2",
       date: 1665549579099
     },
     {
       id: 3,
-      emotion: 2,
+      emotion: 3,
       content: "오늘의 일기 3",
       date: 1665549579100
     },
     {
       id: 4,
-      emotion: 5,
+      emotion: 4,
       content: "오늘의 일기 4",
+      date: 1665549579101
+    },
+    {
+      id: 5,
+      emotion: 5,
+      content: "오늘의 일기 5",
       date: 1665549579101
     },
   ]
