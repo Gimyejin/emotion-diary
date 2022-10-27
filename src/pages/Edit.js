@@ -1,19 +1,38 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import DiaryEditor from "../components/DiaryEditor";
+import { DiaryDispatchContext, DiaryStateContext } from "../App";
 
 const Edit = () => {
+    const [originData, setOriginData] = useState('');
     const navigate = useNavigate();
-    const [serchParams, setSearcgParams] = useSearchParams();
-    const id = serchParams.get('id');
-    const mode = serchParams.get('mode');
+    const { onEdit } = useContext(DiaryDispatchContext);
 
-    console.log("id", id, "mode", mode)
+    //url에 있는 param값을 받아옴
+    const { id } = useParams();
+    const diaryList = useContext(DiaryStateContext);
+    //targetId, date, content, emotion
+    const handleEdit = ({ id, date, content, emotion }) => {
+        onEdit(id, date, content, emotion)
+    }
+    useEffect(() => {
+        if (diaryList.length >= 1) {
+            const targetDiary = diaryList.find((it) => parseInt(it.id) === parseInt(id));
+            console.log(targetDiary)
+
+            //undefind일시 false로 탐지(없는 id를 방지)
+            if (targetDiary) {
+                setOriginData(targetDiary);
+            } else {
+                navigate('/', { replace: true })
+            }
+        }
+
+    }, [id, diaryList])
+
     return (
         <div>
-            <h1>Edit</h1>
-            <p>이곳은 일기 수정페이지 입니다</p>
-            <button onClick={() => setSearcgParams({ who: "winterload" })}>qs 바꾸기</button>
-            <button onClick={() => { navigate("/home") }}>Home으로 가기</button>
-            <button onClick={() => { navigate(-1) }}>뒤로가기</button>
+            <DiaryEditor thisDiary={originData} />
         </div>
     );
 };
