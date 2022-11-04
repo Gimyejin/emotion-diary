@@ -1,12 +1,24 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import MyButton from "../components/MyButton";
+import MyHeader from "../components/MyHeader";
 
 const Diary = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     console.log("id", id)
     return (
         <div>
-            <h1>Diary</h1>
-            <p>이곳은 일기 상세페이지 입니다</p>
+            <MyHeader
+                leftChild={
+                    <MyButton
+                        text={'< 뒤로가기'}
+                        onClick={() => navigate(-1)}
+                    />}
+                rightChild={
+                    <MyButton text={'수정하기'}
+                        onClick={() => navigate(-1)}
+                    />}
+            />
         </div>
     );
 };

@@ -52,25 +52,25 @@ function App() {
       id: 2,
       emotion: 2,
       content: "오늘의 일기 2",
-      date: 1665549579099
+      date: 1665549979099
     },
     {
       id: 3,
       emotion: 3,
       content: "오늘의 일기 3",
-      date: 1665549579100
+      date: 1667520000000
     },
     {
       id: 4,
       emotion: 4,
       content: "오늘의 일기 4",
-      date: 1665549579101
+      date: 1667520000000
     },
     {
       id: 5,
       emotion: 5,
       content: "오늘의 일기 5",
-      date: 1665549579101
+      date: 1667520000000
     },
   ]
   const [data, dispatch] = useReducer(reducer, dummyData);

@@ -38,8 +38,6 @@ const emotionList = [
     },
 ]
 
-
-
 const DiaryEditor = ({ isEdit, originData }) => {
     const contentRef = useRef();
     const [content, setContent] = useState("");
