@@ -6,9 +6,7 @@ import MyHeader from "./MyHeader";
 import MyButton from "./MyButton";
 import EmotionItem from "./EmotionItem";
 
-const getStringDate = (date) => {
-    return date.toISOString().slice(0, 10);
-}
+import { getStringDate } from "../util/data.js";
 
 const DiaryEditor = ({ isEdit, originData }) => {
     const contentRef = useRef();

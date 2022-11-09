@@ -3,12 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { DiaryEmotionContext, DiaryStateContext } from "../App";
 import MyButton from "../components/MyButton";
 import MyHeader from "../components/MyHeader";
+import { getStringDate } from "../util/data";
+import { emotionList_util } from "../util/emotion";
 
 
 const Diary = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [originData, setOriginData] = useState('');
+    const [data, setData] = useState('');
     const diaryList = useContext(DiaryStateContext);
     const emotionList = useContext(DiaryEmotionContext);
     //let emotion = [];
@@ -20,7 +22,7 @@ const Diary = () => {
                 (it) => parseInt(it.id) === parseInt(id)
             );
             if (targetDiary) {
-                setOriginData(targetDiary);
+                setData(targetDiary);
                 console.log(targetDiary)
                 emotion.current = emotionList.find(
                     (list) => parseInt(list.emotion_id) === parseInt(targetDiary.emotion)
@@ -29,38 +31,50 @@ const Diary = () => {
                 navigate('/', { replace: true })
             }
         }
-    }, [])
+    }, [id, diaryList]);
 
-    //날짜 양식 yyyy-mm-dd로 수정필요
-    //const strDate = new Date(parseInt(originData.date)).toLocaleDateString();
-    const writeDay = new Date(originData.date);
-    const headText =
-        `${writeDay.getFullYear()}년 ${writeDay.getMonth() + 1}월 ${writeDay.getDate()}일`
+    if (!data) {
+        return <div className="DiaryPage">로딩중...</div>
+    } else {
+        //(방법2) util에서 emotionList를 넣고 사용할 경우
+        /* const curEmotionData = emotionList_util.find(
+            (it) => parseInt(it.emotion_id) === parseInt(data.emotion)
+        );
+        console.log(curEmotionData) */
+        return (
+            <div className="DiaryPage">
+                <MyHeader
+                    leftChild={
+                        <MyButton
+                            text={'< 뒤로가기'}
+                            onClick={() => navigate(-1)}
+                        />}
+                    rightChild={
+                        <MyButton text={'수정하기'}
+                            onClick={() => navigate(`/edit/${id}`)}
+                        />}
+                    headText={`${getStringDate(new Date(data.date))} 기록`}
+                />
+                <article>
+                    <section>
+                        <h4>오늘의 감정</h4>
+                        <div className={["diary_img_wrapper", `diary_img_wrapper_${data.emotion}`].join(" ")}>
+                            <img src={process.env.PUBLIC_URL + emotion.current.emotion_img} />
+                            <div className="emotion_desrcipt">
+                                {emotion.current.emotion_descript}
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <h4>오늘의 일기</h4>
+                        <div className="diary_content_wrapper">
+                            <p>{data.content}</p>
+                        </div>
+                    </section>
+                </article>
 
-    console.log("emotion", emotion.current.emotion_img);
-    return (
-        <div>
-            <MyHeader
-                leftChild={
-                    <MyButton
-                        text={'< 뒤로가기'}
-                        onClick={() => navigate(-1)}
-                    />}
-                rightChild={
-                    <MyButton text={'수정하기'}
-                        onClick={() => navigate(`/edit/${id}`)}
-                    />}
-                headText={headText + ' 기록'}
-            />
-            <div>
-                <h4>오늘의 감정</h4>
-                <img src={process.env.PUBLIC_URL + emotion.current.emotion_img} />
-                <h4>{emotion.current.emotion_descript}</h4>
             </div>
-            <div>
-                {originData.content}
-            </div>
-        </div>
-    );
+        );
+    }
 };
 export default Diary;
