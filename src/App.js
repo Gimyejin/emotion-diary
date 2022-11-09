@@ -38,6 +38,7 @@ const reducer = (state, action) => {
 
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
+export const DiaryEmotionContext = React.createContext();
 
 function App() {
 
@@ -73,7 +74,36 @@ function App() {
       date: 1667520000000
     },
   ]
+
+  const emotionList = [
+    {
+      emotion_id: 1,
+      emotion_img: process.env.PUBLIC_URL + `/assets/emotion1.png`,
+      emotion_descript: '완전 좋음'
+    },
+    {
+      emotion_id: 2,
+      emotion_img: process.env.PUBLIC_URL + `/assets/emotion2.png`,
+      emotion_descript: '좋음'
+    },
+    {
+      emotion_id: 3,
+      emotion_img: process.env.PUBLIC_URL + `/assets/emotion3.png`,
+      emotion_descript: '그럭저럭'
+    },
+    {
+      emotion_id: 4,
+      emotion_img: process.env.PUBLIC_URL + `/assets/emotion4.png`,
+      emotion_descript: '나쁨'
+    },
+    {
+      emotion_id: 5,
+      emotion_img: process.env.PUBLIC_URL + `/assets/emotion5.png`,
+      emotion_descript: '끔찍함'
+    },
+  ]
   const [data, dispatch] = useReducer(reducer, dummyData);
+
 
   const dataId = useRef(0);
   //creat
@@ -116,16 +146,18 @@ function App() {
         value={{
           onCreate, onRemove, onEdit,
         }}>
-        <BrowserRouter>
-          <div className='App'>
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/new' element={<New />} />
-              <Route path='/edit/:id' element={<Edit />} />
-              <Route path='/diary/:id' element={<Diary />} />
-            </Routes>
-          </div>
-        </BrowserRouter>
+        <DiaryEmotionContext.Provider value={emotionList}>
+          <BrowserRouter>
+            <div className='App'>
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/new' element={<New />} />
+                <Route path='/edit/:id' element={<Edit />} />
+                <Route path='/diary/:id' element={<Diary />} />
+              </Routes>
+            </div>
+          </BrowserRouter>
+        </DiaryEmotionContext.Provider>
       </DiaryDispatchContext.Provider>
     </DiaryStateContext.Provider >
   );
