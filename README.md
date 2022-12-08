@@ -555,4 +555,4 @@ body {
   
   ㄴ localStorage : 브라우저를 닫았다 열어도 데이터는 남아있다. 유효기간X, JavaScript를 사용하거나 브라우저 캐시 또는 로컬 저장 데이터를 지워야만 지워진다.
 
-
+[ localStorge -  ](https://shiny-ray-067.notion.site/LocalStorge-9ea14c561690466fac2e177e5fa8a3b9)
