@@ -546,3 +546,13 @@ body {
 ### Home화면 구현하기
 
 [ 정리글 ](https://shiny-ray-067.notion.site/emotion-diary-HOME-37bd6f6bc73e4b92a86514ccd13d733c)
+
+## LocalStorge를 일기 데이터베이스로 사용하기
+### Web Storage API
+- Web Storage API는 브라우저에서 키/값 쌍을 쿠키보다 훨씬 직관적으로 저장할 수 있는 방법을 제공한다
+
+  ㄴ sessionStorage : 각각의 출처에 대해 독립적인 저장 공간을 페이지 세션이 유지되는 동안(브라우저가 열려있는 동안)제공한다.
+  
+  ㄴ localStorage : 브라우저를 닫았다 열어도 데이터는 남아있다. 유효기간X, JavaScript를 사용하거나 브라우저 캐시 또는 로컬 저장 데이터를 지워야만 지워진다.
+
+[ localStorge -  ](https://shiny-ray-067.notion.site/LocalStorge-9ea14c561690466fac2e177e5fa8a3b9)
