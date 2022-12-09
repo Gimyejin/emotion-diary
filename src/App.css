@@ -382,5 +382,5 @@ header button {
   font-size: 20px;
   font-family: "Yeon Sung";
   font-weight: 400;
-  line-height: 2.5;
+  line-height: 2.5;/* 글자 높이 */
 }
