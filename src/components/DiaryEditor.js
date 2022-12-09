@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { DiaryDispatchContext, DiaryEmotionContext } from "./../App.js"
 
 import MyHeader from "./MyHeader";
@@ -17,9 +17,9 @@ const DiaryEditor = ({ isEdit, originData }) => {
     const emotionList = useContext(DiaryEmotionContext);
     const navigate = useNavigate();
 
-    const handleClickEmote = (emotion) => {
+    const handleClickEmote = useCallback((emotion) => {
         setEmotion(emotion);
-    }
+    }, []);
 
     const handleSubmit = () => {
         if (content.length < 1) {

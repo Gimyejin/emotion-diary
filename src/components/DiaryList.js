@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import MyButton from "./MyButton"
 import { useNavigate } from "react-router-dom"
 import DiaryItem from "./DiaryItem"
@@ -14,14 +14,14 @@ const filterOptionList = [/* filter를 value, setFilter는 바꾸는 함수,opti
     { value: "good", name: "좋은 감정만" },
     { value: "bad", name: "나쁜 감정만" },
 ]
-const ControlMenu = ({ value, onChange, optionList }) => {//onChagne는 setSortType임
+const ControlMenu = React.memo(({ value, onChange, optionList }) => {//onChagne는 setSortType임
     console.log(value)
-    return <select className="controlMenu" value={value} onChange={(e) => onChange(e.target.value)}>
+    return (<select className="controlMenu" value={value} onChange={(e) => onChange(e.target.value)}>
         {optionList.map((it, idx) =>
             <option key={idx} value={it.value}>{it.name}</option>
         )}
-    </select>
-}
+    </select>);
+})
 
 const DiaryList = ({ diaryList }) => {
     const navigate = useNavigate();//페이지 이동
